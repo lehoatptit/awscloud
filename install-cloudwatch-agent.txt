@@ -1,3 +1,14 @@
+Create EC2 role for AWS SSM agent
+Amazon EC2 instances communicate through ec2messages. By installing an SSM agent on an EC2 instance, it allows the EC2 instance to send SSM Agent logs.
+
+Log into AWS console with the accounts that have running EC2 instances.
+Search and click on IAM from AWS navigation menu.
+In the left navigation pane, click on Roles under the Access management drop down menu, and click Create role.
+Select AWS service in Type of trusted entity, and EC2 in the common use case, then click Next: Permissions.
+In the Policy search field, search and select AmazonSSMManagedInstanceCore, then click Next: Tags.
+Click Next: Review.
+In the Role name field, give any name for the EC2 role. (Keep the name of EC2 role for use later in attaching the role to the EC2 instance)
+Click Create role to finish creating the role.
 
 sudo yum install amazon-cloudwatch-agent
 sudo systemctl status amazon-ssm-agent
