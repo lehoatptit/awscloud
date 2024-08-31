@@ -1,3 +1,5 @@
+
+sudo yum install amazon-cloudwatch-agent
 sudo systemctl status amazon-ssm-agent
 sudo yum install -y amazon-ssm-agent
 sudo systemctl start amazon-ssm-agent
