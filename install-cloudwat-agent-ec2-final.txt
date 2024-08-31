@@ -10,3 +10,30 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a stop/start
 thư mục log cloudwatch:
 /var/log/amazon/amazon-cloudwatch-agent
+
+
+1. Installing the CloudWatch Agent
+Before you begin, make sure you have an AWS account and access to the EC2 dashboard. Follow these steps to install the CloudWatch Agent on your Linux EC2 instance:
+
+Sign in to AWS Console: Navigate to the AWS Management Console and sign in to your account.
+Create an IAM Role: If you haven’t already, create an IAM role with permissions to run the CloudWatch Agent on your EC2 instance [6].
+Launch EC2 Instance: Launch a new EC2 instance with Amazon Linux 2 as the operating system. Make sure to assign the IAM role you created in the previous step.
+Connect to EC2 Instance: Use SSH to connect to your EC2 instance. Open a terminal and run the following command:
+ssh -i <key_pair.pem> ec2-user@<public_dns>
+Replace <key_pair.pem> with the path to your private key file and <public_dns> with your instance's public DNS [2].
+
+Download the CloudWatch Agent Package: On your EC2 instance, download the CloudWatch Agent package using the following command:
+
+wget https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
+Install the Agent: Install the CloudWatch Agent package using the package manager appropriate for your Linux distribution. For Amazon Linux 2, use the following command:
+
+sudo rpm -U ./amazon-cloudwatch-agent.rpm
+Configure the Agent: After installation, configure the CloudWatch Agent by running the configuration wizard:
+
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+Start the Agent: Once configured, start the CloudWatch Agent service:
+
+sudo systemctl start amazon-cloudwatch-agent
+Verify Installation: Check the status of the CloudWatch Agent to ensure it’s running without errors:
+
+sudo systemctl status amazon-cloudwatch-agent
