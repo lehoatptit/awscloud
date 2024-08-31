@@ -1,0 +1,12 @@
+1. cài đặt cloudwatch agent lên EC2
+sudo yum install amazon-cloudwatch-agent
+2. Vào thư mục chứa file cài đặt cloudwatch agent chạy file cài đặt
+sudo  /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+3.kiểm tra lại cấu hình 
+cat /opt/aws/amazon-cloudwatch-agent/bin/config.json
+4.start service
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:AmazonCloudWatch-linux
+5.stop/start service cloudwatch
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a stop/start
+thư mục log cloudwatch:
+/var/log/amazon/amazon-cloudwatch-agent
