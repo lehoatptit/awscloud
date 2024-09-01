@@ -1,0 +1,13 @@
+#hướng dẫn cài đặt docker trên ec2
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
+#gán quyền user ec2-user cho service docker 
+groups ec2-user
+newgrp docker
+#kiểm tra service
+sudo systemctl status docker
+sudo systemctl status docker
+sudo chown root:docker /var/run/docker.sock
+sudo chmod 660 /var/run/docker.sock
+ 
